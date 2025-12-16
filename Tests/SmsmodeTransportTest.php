@@ -63,7 +63,7 @@ final class SmsmodeTransportTest extends TransportTestCase
 
         $response->expects(self::once())->method('getContent')->willReturn(json_encode(['messageId' => 'foo']));
 
-        $client = new MockHttpClient(function (string $method, string $url) use ($response): ResponseInterface {
+        $client = new MockHttpClient(static function (string $method, string $url) use ($response): ResponseInterface {
             self::assertSame('POST', $method);
             self::assertSame('https://rest.smsmode.com/sms/v1/messages', $url);
 
